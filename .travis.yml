@@ -4,8 +4,13 @@ os:
 
 language: ruby
 
-install:
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install indent; fi
+before_install:
+  - if [ $TRAVIS_OS_NAME = linux ]; then
+      travis_retry sudo apt-get install indent;
+    fi
+  - if [ $TRAVIS_OS_NAME = osx ]; then
+      travis_retry brew install gnu-indent --with-default-names;
+    fi
 
 before_script:
   - git config --local user.email 'travis@travis.ci'
