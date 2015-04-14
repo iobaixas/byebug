@@ -5,6 +5,8 @@ os:
 language: ruby
 
 before_install:
+  - rvm get stable
+  - rvm reload
   - if [ $TRAVIS_OS_NAME = linux ]; then
       travis_retry sudo apt-get install indent;
     fi
